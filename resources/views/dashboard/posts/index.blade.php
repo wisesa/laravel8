@@ -5,8 +5,7 @@
   <h1 class="h2">My Posts</h1>
 </div>
 
-<div>
-
+<div class="table-responsive col-lg-8">
   <table class="table table-striped table-sm">
     <thead>
       <tr>
@@ -17,12 +16,18 @@
       </tr>
     </thead>
     <tbody>
+      @foreach ($posts as $post)
       <tr>
-        <td>1,001</td>
-        <td>random</td>
-        <td>data</td>
-        <td>placeholder</td>
+        <td>{{ $loop->iteration }}</td>
+        <td>{{ $post->title }}</td>
+        <td>{{ $post->category->name }}</td>
+        <td><a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info">View</a></td>
+
+        <td><a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-warning">Edit</a></td>
+
+        <td><a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-danger">Delete</a></td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 </div>

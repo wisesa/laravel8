@@ -14,9 +14,9 @@ class DashboardPostController extends Controller
      */
     public function index()
     {
-        return Post::where('user_id', auth()->user()->id)->get();
+        
         return view('dashboard.posts.index', [
-            'post' => Post::all()
+            'posts' => Post::where('user_id', auth()->user()->id)->get()
         ]);
     }
 
@@ -47,9 +47,11 @@ class DashboardPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('dashboard.posts.show', [
+            'post' => $post
+        ]);
     }
 
     /**
