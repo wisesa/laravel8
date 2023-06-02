@@ -13,6 +13,12 @@
               My Posts
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/krider*') ? 'active' : '' }}" href="/dashboard/krider">
+              <span data-feather="file-text" class="align-text-bottom"></span>
+              Kamen Rider
+            </a>
+          </li>
         </ul>
 
         @can('admin')

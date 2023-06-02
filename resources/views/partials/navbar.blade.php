@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger ">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
     <div class="container">
-        <a class="navbar-brand" href="/">WPU Blog</a>
+        <a class="navbar-brand" href="/">
+            <img src="/img/logo.png" style="width:50px" />
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,9 +11,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ ($active==='home') ? 'active' : '' }}" href="/">Home</span></a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link {{ ($active==='about') ? 'active' : '' }}" href="/about">About</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link {{ ($active==='blog') ? 'active' : '' }}" href="/posts">Blog</a>
                 </li>
