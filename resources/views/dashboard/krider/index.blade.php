@@ -17,8 +17,8 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Title</th>
-        <th scope="col">Category</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -26,19 +26,12 @@
       @foreach ($kriders as $krider)
       <tr>
         <td>{{ $loop->iteration }}</td>
-        <td>{{ $krider->title }}</td>
-        <td>{{ $krider->category->name }}</td>
+        <td>{{ $krider->name }}</td>
+        <td><img src="{{ asset('storage/' . $krider->image) }}" style="width:100px;" class="img-fluid mt-3" /></td>
         <td>
-          <a href="/dashboard/kriders/{{ $krider->slug }}" class="badge bg-info">View</a>
-          <a href="/dashboard/kriders/{{ $krider->slug }}/edit" class="badge bg-warning">Edit</a>
-
-          <form action="/dashboard/kriders/{{ $krider->slug }}" method="krider" class="d-inline">
-            @method('delete')
-            @csrf
-            <button class="badge bg-danger border-0" onclick="return confirm('Are you sure ?');">
-              Delete
-            </button>
-          </form>
+          <a href="/dashboard/krider/{{ $krider->slug }}" class="badge bg-info">View</a>
+          <a href="/dashboard/krider/edit/{{ $krider->slug }}" class="badge bg-warning">Edit</a>
+          <a href="/dashboard/krider/destroy/{{ $krider->slug }}" class="badge bg-danger">Delete</a>
         </td>
       </tr>
       @endforeach

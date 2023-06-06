@@ -21,3 +21,40 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.center{
+    text-align: center !important;
+}
+
+@media (min-width: 300px) {
+    .img-krider-mobile {
+    width: 150px;
+    height:200px;
+    }
+
+    .div-krider-desktop{
+        display: none !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .img-krider-desktop {
+    width: 100px;
+    height:120px;
+    }
+
+    .div-krider-mobile{
+        display: none !important;
+    }
+
+    .div-krider-desktop{
+        display: block !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    .img-krider-desktop {
+      width: 170px;
+      height:200px;
+    }
+  }

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Krider;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -17,9 +15,22 @@ class KriderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function home()
+    {
+        return view('home', [
+            "title" => "home",
+            "active" => 'home',
+            'kriders' => Krider::all()
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        
         return view('dashboard.krider.index', [
             'kriders' => Krider::all()
         ]);
@@ -45,11 +56,10 @@ class KriderController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'slug' => 'required|unique:krider',
+            'slug' => 'required|unique:kriders',
             'image' => 'image|file|max:1024',
             'description' => 'required'
         ]);
-        dd('dsfdsf');
 
         if($request->file('image')){
             $validatedData['image'] = $request->file('image')->store('krider-images');
@@ -66,7 +76,7 @@ class KriderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $krider)
+    public function show(Krider $krider)
     {
         return view('dashboard.krider.show', [
             'krider' => $krider
@@ -79,11 +89,10 @@ class KriderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $krider)
+    public function edit(Krider $krider)
     {
         return view('dashboard.krider.edit', [
-            'krider' => $krider,
-            'categories' => Category::all()
+            'krider' => $krider
         ]);
     }
 
@@ -94,13 +103,13 @@ class KriderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $krider)
+    public function update(Request $request, Krider $krider)
     {
+
         $rules = [
-            'title' => 'required|max:255',
-            'category_id' => 'required',
+            'name' => 'required|max:255',
             'image' => 'image|file|max:1024',
-            'body' => 'required'
+            'description' => 'required'
         ];
 
         if($request->slug != $krider->slug){
@@ -117,12 +126,9 @@ class KriderController extends Controller
             $validatedData['image'] = $request->file('image')->store('krider-images');
         }
 
-        $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body, 200));
+        Krider::where('id', $krider->id)->update($validatedData);
 
-        Post::where('id', $krider->id)->update($validatedData);
-
-        return redirect('/dashboard/krider')->with('success', 'Post has been updated');
+        return redirect('/dashboard/krider')->with('success', 'Kamen rider has been updated');
     }
 
     /**
@@ -131,19 +137,19 @@ class KriderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $krider)
+    public function destroy(Krider $krider)
     {
         if($krider->image){
             Storage::delete($krider->image);
         }
 
-        Post::destroy($krider->id);
-        return redirect('/dashboard/krider')->with('success', 'Post has been deleted');
+        Krider::destroy($krider->id);
+        return redirect('/dashboard/krider')->with('success', 'Krider has been deleted');
     }
 
     public function checkSlug(Request $request)
     {
-        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+        $slug = SlugService::createSlug(Krider::class, 'slug', $request->title);
         return response()->json(['slug' => $slug]);
     }
 }

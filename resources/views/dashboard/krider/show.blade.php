@@ -4,21 +4,21 @@
     <div class="container">
         <div class="row my-3">
             <div class="col-lg-8">
-                <h1 class="mb-3">{{ $post->title }}</h1>
+                <h1 class="mb-3">{{ $krider->name }}</h1>
 
-                <a href="/dashboard/posts" class="btn btn-success">Back to All My Posts</a>
-                <a href="/dashboard/posts{{ $post->slug }}" class="btn btn-warning">Edit</a>
+                <a href="/dashboard/krider" class="btn btn-success">Back to All Kamen Rider</a>
+                <a href="/dashboard/krider/edit/{{ $krider->slug }}" class="btn btn-warning">Edit</a>
                 
-                @if ($post->image)
+                @if ($krider->image)
                     <div style="max-height: 350px; overflow:hidden;">
-                        <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid mt-3" alt="{{ $post->category->name }}">
+                        <img src="{{ asset('storage/' . $krider->image) }}" class="img-fluid mt-3" alt="{{ $krider->name }}">
                     </div>    
                 @else
-                    <img src="https:/source.unsplash.com/1200x400?{{ $post->category->name }}" class="img-fluid mt-3" alt="{{ $post->category->name }}">
+                    <img src="https:/source.unsplash.com/1200x400?{{ $krider->category->name }}" class="img-fluid mt-3" alt="{{ $krider->category->name }}">
                 @endif
 
                 <article class="my-3 fs-5">
-                    {!! $post->body !!}
+                    {!! $krider->body !!}
                 </article>
             </div>
         </div>

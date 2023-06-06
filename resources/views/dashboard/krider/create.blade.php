@@ -50,7 +50,7 @@
         <trix-editor input="description"></trix-editor>
     </div>
 
-    <button type="submit" class="btn btn-primary">Create Post</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 

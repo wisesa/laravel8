@@ -20,12 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "home",
-        "active" => 'home'
-    ]);
-});
+Route::get('/', [KriderController::class, 'home']);
 
 Route::get('/about', function () {
     return view('about', [
@@ -62,8 +57,16 @@ Route::get('/dashboard', function(){
 })->middleware('auth');
 
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
+
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
 Route::resource('/dashboard/krider', KriderController::class)->middleware('auth');
+
+Route::get('/dashboard/krider/checkSlug', [KriderPostController::class, 'checkSlug'])->middleware('auth');
+
+Route::get('/dashboard/krider/{krider:slug}', [KriderController::class, 'show']);
+Route::get('/dashboard/krider/edit/{krider:slug}', [KriderController::class, 'edit']);
+Route::put('/dashboard/krider/update/{krider:slug}', [KriderController::class, 'update']);
+Route::get('/dashboard/krider/destroy/{krider:slug}', [KriderController::class, 'destroy']);
