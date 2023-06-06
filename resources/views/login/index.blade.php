@@ -1,3 +1,9 @@
+<style>
+    .sea{
+        height:500px;
+    }
+</style>
+
 @extends('layouts.main')
 
 @section('container')
@@ -18,8 +24,8 @@
             </div>
         @endif
 
-        <main class="form-signin w-100 m-auto">
-            <h1 class="h3 mb-3 fw-normal text-center">Please login</h1>
+        <main class="form-signin w-100 m-auto" style="padding-top:200px;">
+            <h1 class="h3 mb-3 fw-normal text-center">Login Access</h1>
             <form action="/login" method="post">
                 @csrf
                 <div class="form-floating">
@@ -35,7 +41,7 @@
                 </div>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-                <small class="d-block mt-3 text-center">Not registered? <a href="/register">Register Now!</a></small>
+                <!-- <small class="d-block mt-3 text-center">Not registered? <a href="/register">Register Now!</a></small> -->
             </form>
         </main>
     </div>

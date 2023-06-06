@@ -26,7 +26,7 @@
 
     </div>
 
-    <div style="background:url('/img/sea.svg');  z-index:-1; margin-top:50px; padding-bottom:100px; background-size:cover; background-repeat:no-repeat;">
+    <div class="sea" style="background:url('/img/sea.svg');  z-index:-1; margin-top:50px; padding-bottom:100px; background-size:cover; background-repeat:no-repeat;">
 
 
     @if(isset($kriders))
